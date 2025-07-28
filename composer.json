@@ -70,7 +70,8 @@
             "@php artisan test"
         ],
         "refactor": "./vendor/bin/rector process",
-        "test:refactor": "./vendor/bin/rector process --dry-run"
+        "test:refactor": "./vendor/bin/rector process --dry-run",
+        "test:typos": "./vendor/bin/peck"
     },
     "extra": {
         "laravel": {
