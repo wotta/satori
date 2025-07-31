@@ -73,12 +73,14 @@
             "@php artisan config:clear --ansi",
             "@php artisan test"
         ],
-        "refactor": "./vendor/bin/rector process",
         "test:refactor": "./vendor/bin/rector process --dry-run",
         "test:typos": "./vendor/bin/peck",
         "test:phpstan": "./vendor/bin/phpstan analyse --memory-limit=256M",
+        "test:pint": "./vendor/bin/pint --test --parallel",
+        "refactor": "./vendor/bin/rector process",
         "phpstan": "./vendor/bin/phpstan analyse --memory-limit=256M",
-        "phpstan-baseline": "./vendor/bin/phpstan analyse --generate-baseline --memory-limit=256M"
+        "phpstan-baseline": "./vendor/bin/phpstan analyse --generate-baseline --memory-limit=256M",
+        "pint": "./vendor/bin/pint --parallel"
     },
     "extra": {
         "laravel": {
