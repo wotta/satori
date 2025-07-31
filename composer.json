@@ -93,6 +93,9 @@
             "php-http/discovery": true
         }
     },
+    "suggest": {
+        "prism-php/prism": "Adds prism LLM functionality for our project"
+    },
     "minimum-stability": "stable",
     "prefer-stable": true
 }
