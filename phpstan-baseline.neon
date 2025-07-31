@@ -27,7 +27,7 @@ parameters:
 		-
 			message: '#^Parameter \#1 \$key of function __ expects string\|null, mixed given\.$#'
 			identifier: argument.type
-			count: 2
+			count: 1
 			path: app/Http/Controllers/Auth/NewPasswordController.php
 
 		-
@@ -95,6 +95,18 @@ parameters:
 			identifier: method.nonObject
 			count: 1
 			path: app/Http/Controllers/Settings/ProfileController.php
+
+		-
+			message: '#^Instanceof between App\\Models\\User\|null and Illuminate\\Contracts\\Auth\\MustVerifyEmail will always evaluate to false\.$#'
+			identifier: instanceof.alwaysFalse
+			count: 1
+			path: app/Http/Controllers/Settings/ProfileController.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method Illuminate\\Support\\Str\:\:lower\(\) expects string, Illuminate\\Support\\Stringable given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Http/Requests/Auth/LoginRequest.php
 
 		-
 			message: '#^Cannot access property \$id on App\\Models\\User\|null\.$#'
