@@ -1,0 +1,119 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Console\Commands\Satori;
+
+use Illuminate\Console\Command;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use Symfony\Component\Console\Command\Command as BaseCommand;
+use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\suggest;
+
+final class SatoriInstallCommand extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'satori:install';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Runs the Satori installation setup.';
+
+    /** @var string[] self::PACKAGES */
+    private const array PACKAGES = [
+        'prism-php/prism' => '^0.82',
+        'openai-php/client' => '^0.8',
+    ];
+
+    /**
+     * Execute the console command.
+     *
+     * @throws \JsonException
+     */
+    public function handle(): int
+    {
+        if (app()->isLocal() === false) {
+            $this->error('This command can only be run in a local environment.');
+
+            return BaseCommand::FAILURE;
+        }
+
+        $this->info('Satori is being installed.');
+        $this->newLine(2);
+
+        if (confirm('Are you planning to integrate AI within your application?')) {
+            $this->installAiPackage();
+        }
+
+        if (
+            (config('database.default') === 'sqlite') &&
+            (! File::exists(database_path('database.sqlite')))
+        ) {
+            touch(database_path('database.sqlite'));
+        }
+
+        Artisan::call('blueprint:init');
+        $this->comment('Blueprint is initialized. Check out the docs here: https://blueprint.laravelshift.com/docs/generating-components/');
+
+        return BaseCommand::SUCCESS;
+    }
+
+    /**
+     * @throws FileNotFoundException
+     * @throws \JsonException
+     */
+    private function installAiPackage(): void
+    {
+        $composerJson = File::json(base_path('composer.json'));
+
+        $packageToInstall = suggest(
+            label: 'Which package do you want to install?',
+            options: fn (string $value) => collect(array_keys(self::PACKAGES))
+                ->filter(fn (string $name) => Str::contains($name, $value, ignoreCase: true))
+        );
+
+        if (! isset($composerJson['require'][$packageToInstall])) {
+            $composerJson['require'][$packageToInstall] = self::PACKAGES[$packageToInstall];
+        }
+
+        File::put(base_path('composer.json'), json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+
+        $this->info('Running composer update command to install package');
+        exec('composer update '. $packageToInstall .' --no-interaction');
+        $this->newLine(2);
+
+        switch ($packageToInstall) {
+            case 'prism-php/prism':
+                Artisan::call('vendor:publish', [
+                    '--tag' => 'prism-config',
+                ]);
+
+                if (! File::exists(config_path('prism.php'))) {
+                    $this->error('Could not publish prism config.');
+                    $this->newLine(2);
+                    $this->info('Check if prism was installed correctly. If not run the following commands:');
+                    $this->line(str_repeat('<fg=white;bg=gray> </>', 60));
+                    $this->line('<fg=white;bg=gray>    $ composer require ' . $packageToInstall . str_repeat(' ', 22) . '</>');
+                    $this->line('<fg=white;bg=gray>    $ php artisan vendor:publish --tag prism-config'. str_repeat(' ', 9) .'</>');
+                    $this->line(str_repeat('<fg=white;bg=gray> </>', 60));
+                    $this->newLine(2);
+                }
+
+                return;
+            case 'openai-php/client':
+                break;
+        }
+
+        $this->line('Package installed');
+    }
+}

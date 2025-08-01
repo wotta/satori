@@ -97,7 +97,8 @@
         }
     },
     "suggest": {
-        "prism-php/prism": "Adds prism LLM functionality for our project"
+        "prism-php/prism": "Adds prism LLM functionality for our project. Read more: https://prismphp.com/getting-started/introduction.html",
+        "openai-php/client": "OpenAI package. Read more: https://github.com/openai-php/client"
     },
     "minimum-stability": "stable",
     "prefer-stable": true
