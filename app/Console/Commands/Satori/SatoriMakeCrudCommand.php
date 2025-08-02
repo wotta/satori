@@ -1,14 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands\Satori;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Console\Command\Command as BaseCommand;
+
 use function Laravel\Prompts\confirm;
 
-class SatoriMakeCrudCommand extends Command
+final class SatoriMakeCrudCommand extends Command
 {
     protected $signature = 'satori:make:crud';
 

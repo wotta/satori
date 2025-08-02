@@ -28,7 +28,8 @@
         "peckphp/peck": "^0.1.3",
         "pestphp/pest": "^3.8",
         "pestphp/pest-plugin-laravel": "^3.2",
-        "rector/rector": "^2.1"
+        "rector/rector": "^2.1",
+        "veewee/composer-run-parallel": "^1.4"
     },
     "autoload": {
         "psr-4": {
@@ -68,6 +69,7 @@
             "Composer\\Config::disableProcessTimeout",
             "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"php artisan inertia:start-ssr\" --names=server,queue,logs,ssr --kill-others"
         ],
+        "parralel:test": "@parallel test:config-clear test:artisan-test test:refactor test:typos test:phpstan test:pint",
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test",
@@ -76,6 +78,8 @@
             "@test:phpstan",
             "@test:pint"
         ],
+        "test:config-clear": "@php artisan config:clear --ansi",
+        "test:artisan-test": "@php artisan test",
         "test:refactor": "./vendor/bin/rector process --dry-run",
         "test:typos": "./vendor/bin/peck",
         "test:phpstan": "./vendor/bin/phpstan analyse --memory-limit=256M",
@@ -96,7 +100,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "veewee/composer-run-parallel": true
         }
     },
     "suggest": {

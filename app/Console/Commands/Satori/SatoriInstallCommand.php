@@ -9,9 +9,10 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use JsonException;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command as BaseCommand;
-use function Laravel\Prompts\clear;
+
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\suggest;
 use function Laravel\Prompts\text;
@@ -28,7 +29,7 @@ final class SatoriInstallCommand extends Command
     /**
      * Execute the console command.
      *
-     * @throws \JsonException
+     * @throws JsonException
      */
     public function handle(): int
     {
@@ -76,7 +77,7 @@ final class SatoriInstallCommand extends Command
 
     /**
      * @throws FileNotFoundException
-     * @throws \JsonException
+     * @throws JsonException
      */
     private function installAiPackage(): void
     {
@@ -95,7 +96,7 @@ final class SatoriInstallCommand extends Command
         File::put(base_path('composer.json'), json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
 
         $this->info('Running composer update command to install package');
-        exec('composer update '. $packageToInstall .' --no-interaction');
+        exec('composer update '.$packageToInstall.' --no-interaction');
         $this->newLine(2);
 
         switch ($packageToInstall) {
@@ -109,8 +110,8 @@ final class SatoriInstallCommand extends Command
                     $this->newLine(2);
                     $this->info('Check if prism was installed correctly. If not run the following commands:');
                     $this->line(str_repeat('<fg=white;bg=gray> </>', 60));
-                    $this->line('<fg=white;bg=gray>    $ composer require ' . $packageToInstall . str_repeat(' ', 22) . '</>');
-                    $this->line('<fg=white;bg=gray>    $ php artisan vendor:publish --tag prism-config'. str_repeat(' ', 9) .'</>');
+                    $this->line('<fg=white;bg=gray>    $ composer require '.$packageToInstall.str_repeat(' ', 22).'</>');
+                    $this->line('<fg=white;bg=gray>    $ php artisan vendor:publish --tag prism-config'.str_repeat(' ', 9).'</>');
                     $this->line(str_repeat('<fg=white;bg=gray> </>', 60));
                     $this->newLine(2);
                 }
