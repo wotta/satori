@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace App\Console\Commands\Satori;
 
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 
+use function Filament\Support\discover_app_classes;
 use function Laravel\Prompts\confirm;
+use function Laravel\Prompts\suggest;
 
 final class SatoriMakeCrudCommand extends Command
 {
@@ -20,7 +23,7 @@ final class SatoriMakeCrudCommand extends Command
     public function handle(): int
     {
         if (! File::exists(base_path('draft.yml'))) {
-            Artisan::call('blueprint:init');
+            $this->callSilent('blueprint:init');
         }
 
         if (! confirm('Do you want to run blueprint:build?')) {
@@ -29,7 +32,7 @@ final class SatoriMakeCrudCommand extends Command
             return BaseCommand::SUCCESS;
         }
 
-        $output = Artisan::call('blueprint:build');
+        $output = $this->callSilent('blueprint:build');
         if ($output === BaseCommand::FAILURE) {
             $this->error('Blueprint build failed');
 
@@ -44,7 +47,7 @@ final class SatoriMakeCrudCommand extends Command
             return BaseCommand::SUCCESS;
         }
 
-        $output = Artisan::call('migrate', [
+        $output = $this->callSilent('migrate', [
             '--force' => true,
             '--no-interaction' => true,
         ]);
@@ -57,6 +60,31 @@ final class SatoriMakeCrudCommand extends Command
 
         $this->newLine(2);
         $this->info('Creating filament crud');
+
+        $modelFqns = discover_app_classes(parentClass: Model::class);
+
+        $model = suggest(
+            label: 'What is the model?',
+            options: function (string $search) use ($modelFqns): array {
+                $search = str($search)->trim()->replace(['\\', '/'], '');
+
+                if (blank($search)) {
+                    return $modelFqns;
+                }
+
+                return array_filter(
+                    $modelFqns,
+                    fn (string $class): bool => str($class)->replace(['\\', '/'], '')->contains($search, ignoreCase: true),
+                );
+            },
+            placeholder: 'App\\Models\\BlogPost',
+            required: true,
+        );
+
+        $this->callSilent('make:filament-resource', [
+            'model' => class_basename($model),
+            '-n',
+        ]);
 
         return BaseCommand::SUCCESS;
     }
