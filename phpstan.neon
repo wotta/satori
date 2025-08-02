@@ -13,4 +13,4 @@ parameters:
     level: max
 
     excludePaths:
-        - app/Console/Commands/SatoriInstallCommand.php
+        - app/Console/Commands/Satori/SatoriInstallCommand.php
