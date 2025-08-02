@@ -74,7 +74,7 @@ final class SatoriInstallCommand extends Command
         return BaseCommand::SUCCESS;
     }
 
-    private function runFilamentPanelCommand()
+    private function runFilamentPanelCommand(): void
     {
 
     }
