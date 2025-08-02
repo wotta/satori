@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Symfony\Component\Console\Command\Command as BaseCommand;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\suggest;
+use function Laravel\Prompts\text;
 
 final class SatoriInstallCommand extends Command
 {
@@ -63,9 +64,27 @@ final class SatoriInstallCommand extends Command
         }
 
         Artisan::call('blueprint:init');
-        $this->comment('Blueprint is initialized. Check out the docs here: https://blueprint.laravelshift.com/docs/generating-components/');
+        $this->comment('Blueprint is initialized.');
+        $this->line('');
+        $this->line('');
+
+        $panelName = text(
+            label: 'What is the panel ID? (e.g. admin)',
+            default: 'admin',
+            hint: 'This will be displayed on your profile.'
+        );
+
+        Artisan::call('filament:make-panel', [
+            'id' => $panelName,
+            '-n' => true,
+        ]);
 
         return BaseCommand::SUCCESS;
+    }
+
+    private function runFilamentPanelCommand()
+    {
+
     }
 
     /**
