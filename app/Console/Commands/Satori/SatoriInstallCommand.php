@@ -9,27 +9,16 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command as BaseCommand;
+use function Laravel\Prompts\clear;
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\suggest;
 use function Laravel\Prompts\text;
 
+#[AsCommand('satori:install', description: 'Runs the Satori installation setup.')]
 final class SatoriInstallCommand extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'satori:install';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Runs the Satori installation setup.';
-
     /** @var string[] self::PACKAGES */
     private const array PACKAGES = [
         'prism-php/prism' => '^0.82',
@@ -63,11 +52,6 @@ final class SatoriInstallCommand extends Command
             touch(database_path('database.sqlite'));
         }
 
-        Artisan::call('blueprint:init');
-        $this->comment('Blueprint is initialized.');
-        $this->line('');
-        $this->line('');
-
         $panelName = text(
             label: 'What is the panel ID? (e.g. admin)',
             default: 'admin',
@@ -78,6 +62,14 @@ final class SatoriInstallCommand extends Command
             'id' => $panelName,
             '-n' => true,
         ]);
+        $this->comment('Filament panel is initialized.');
+        $this->line('');
+
+        Artisan::call('blueprint:init', [
+            '-n' => true,
+        ]);
+        $this->comment('Blueprint is initialized.');
+        $this->line('');
 
         return BaseCommand::SUCCESS;
     }
