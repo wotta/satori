@@ -1,7 +1,16 @@
 {
     "preset": "laravel",
+    "paths": {
+
+    },
     "ignore": {
-        "words": ["php", "filesystems", "favicon", "js"],
-        "paths": []
+        "words": ["php", "filesystems", "favicon", "js", "supervisord", "eslint", "tsconfig"],
+        "paths": [
+            "resources/js/",
+            "resources/css/",
+            "public/",
+            "storage",
+            "vendor"
+        ]
     }
 }

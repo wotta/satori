@@ -70,7 +70,11 @@
         ],
         "test": [
             "@php artisan config:clear --ansi",
-            "@php artisan test"
+            "@php artisan test",
+            "@test:refactor",
+            "@test:typos",
+            "@test:phpstan",
+            "@test:pint"
         ],
         "test:refactor": "./vendor/bin/rector process --dry-run",
         "test:typos": "./vendor/bin/peck",

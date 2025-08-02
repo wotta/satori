@@ -74,11 +74,6 @@ final class SatoriInstallCommand extends Command
         return BaseCommand::SUCCESS;
     }
 
-    private function runFilamentPanelCommand(): void
-    {
-
-    }
-
     /**
      * @throws FileNotFoundException
      * @throws \JsonException
