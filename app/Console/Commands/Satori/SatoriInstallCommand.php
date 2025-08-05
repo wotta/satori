@@ -6,7 +6,6 @@ namespace App\Console\Commands\Satori;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use JsonException;
@@ -59,18 +58,25 @@ final class SatoriInstallCommand extends Command
             hint: 'This will be displayed on your profile.'
         );
 
-        Artisan::call('filament:make-panel', [
+        $this->call('filament:make-panel', [
             'id' => $panelName,
             '-n' => true,
         ]);
         $this->comment('Filament panel is initialized.');
         $this->line('');
 
-        Artisan::call('blueprint:init', [
+        $this->call('blueprint:init', [
             '-n' => true,
         ]);
         $this->comment('Blueprint is initialized.');
         $this->line('');
+
+        if (config('app.key') === null) {
+            $this->info('App key was not set yet. running key generate.');
+            $this->callSilent('key:generate', ['--force' => true, '-n' => true]);
+            $this->comment('App key is generated.');
+            $this->line('');
+        }
 
         return BaseCommand::SUCCESS;
     }
@@ -101,7 +107,7 @@ final class SatoriInstallCommand extends Command
 
         switch ($packageToInstall) {
             case 'prism-php/prism':
-                Artisan::call('vendor:publish', [
+                $this->call('vendor:publish', [
                     '--tag' => 'prism-config',
                 ]);
 
