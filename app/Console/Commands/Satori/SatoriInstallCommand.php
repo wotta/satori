@@ -41,6 +41,8 @@ final class SatoriInstallCommand extends Command
         $this->info('Satori is being installed.');
         $this->newLine(2);
 
+        $runMigration = confirm('Do you want to run migrations?');
+
         if (confirm('Are you planning to integrate AI within your application?')) {
             $this->installAiPackage();
         }
@@ -77,6 +79,19 @@ final class SatoriInstallCommand extends Command
             $this->comment('App key is generated.');
             $this->line('');
         }
+
+        $this->restorePrompts();
+
+        if ($runMigration) {
+            $this->comment('Migration is successful.');
+            $this->line('');
+        }
+
+        $this->info('To run the local development machine use one of the following commands:');
+        $this->line('');
+        $this->comment('1. composer run dev');
+        $this->line('');
+        $this->comment('2. ./vendor/bin/sail up -d');
 
         return BaseCommand::SUCCESS;
     }
