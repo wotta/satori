@@ -17,6 +17,10 @@ This project includes a custom installation script that streamlines the setup pr
 - Run `php artisan satori:install`. This will prompt to create a new filament panel, initialize blueprint, and install prism or the openai package.
 - Provides instructions to start local development server
 
+## Additional information
+
+If you use Laravel Sail for your dev server locally I've included a custom `supervisord.conf` that automatically runs horizon on in the background.
+
 ## License
 
 The Satori starter kit is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
