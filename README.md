@@ -1,5 +1,13 @@
 # Satori
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="[https://github.com/user-attachments/assets/7f3c77b9-e549-4887-872e-a0d512678945](https://banners.beyondco.de/satori.png?theme=dark&packageManager=composer+require&packageName=wottavm%2Fsatori&pattern=leaf&style=style_2&description=An+opinionated+Laravel%2C+Filament%2C+Blueprint%2C+and+React+starter+kit.&md=1&showWatermark=0&fontSize=100px&images=sun)">
+    <source media="(prefers-color-scheme: light)" srcset="[https://github.com/user-attachments/assets/8cf172b8-0e36-47c4-b096-a6fad0044e32](https://banners.beyondco.de/satori.png?theme=light&packageManager=composer+require&packageName=wottavm%2Fsatori&pattern=leaf&style=style_2&description=An+opinionated+Laravel%2C+Filament%2C+Blueprint%2C+and+React+starter+kit.&md=1&showWatermark=0&fontSize=100px&images=sun)">
+    <img alt="Fission Logo" src="[https://github.com/user-attachments/assets/fd074588-4ffd-47f3-af6e-a24500ecbc55](https://banners.beyondco.de/satori.png?theme=light&packageManager=composer+require&packageName=wottavm%2Fsatori&pattern=leaf&style=style_2&description=An+opinionated+Laravel%2C+Filament%2C+Blueprint%2C+and+React+starter+kit.&md=1&showWatermark=0&fontSize=100px&images=sun)">
+  </picture>
+</p>
+
 > [!IMPORTANT]
 > This starter kit is created by Wouter van Marrum using Laravel's react starterkit, [Blueprint](https://blueprint.laravelshift.com), and [filament](https://filamentphp.com). While PRs are welcome, this is made to fit my personal needs to be able to create MVP's fast without AI.
 > When Laravel Boost gets released I can only imagine how much more efficient I can be with it when combined in this starter template.
