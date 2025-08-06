@@ -2,9 +2,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="[https://github.com/user-attachments/assets/7f3c77b9-e549-4887-872e-a0d512678945](https://banners.beyondco.de/satori.png?theme=dark&packageManager=composer+require&packageName=wottavm%2Fsatori&pattern=leaf&style=style_2&description=An+opinionated+Laravel%2C+Filament%2C+Blueprint%2C+and+React+starter+kit.&md=1&showWatermark=0&fontSize=100px&images=sun)">
-    <source media="(prefers-color-scheme: light)" srcset="[https://github.com/user-attachments/assets/8cf172b8-0e36-47c4-b096-a6fad0044e32](https://banners.beyondco.de/satori.png?theme=light&packageManager=composer+require&packageName=wottavm%2Fsatori&pattern=leaf&style=style_2&description=An+opinionated+Laravel%2C+Filament%2C+Blueprint%2C+and+React+starter+kit.&md=1&showWatermark=0&fontSize=100px&images=sun)">
-    <img alt="Fission Logo" src="[https://github.com/user-attachments/assets/fd074588-4ffd-47f3-af6e-a24500ecbc55](https://banners.beyondco.de/satori.png?theme=light&packageManager=composer+require&packageName=wottavm%2Fsatori&pattern=leaf&style=style_2&description=An+opinionated+Laravel%2C+Filament%2C+Blueprint%2C+and+React+starter+kit.&md=1&showWatermark=0&fontSize=100px&images=sun)">
+    <source media="(prefers-color-scheme: dark)" srcset="https://banners.beyondco.de/satori.png?theme=dark&packageManager=composer+require&packageName=wottavm%2Fsatori&pattern=leaf&style=style_2&description=An+opinionated+Laravel%2C+Filament%2C+Blueprint%2C+and+React+starter+kit.&md=1&showWatermark=0&fontSize=100px&images=sun">
+    <source media="(prefers-color-scheme: light)" srcset="https://banners.beyondco.de/satori.png?theme=light&packageManager=composer+require&packageName=wottavm%2Fsatori&pattern=leaf&style=style_2&description=An+opinionated+Laravel%2C+Filament%2C+Blueprint%2C+and+React+starter+kit.&md=1&showWatermark=0&fontSize=100px&images=sun">
+    <img alt="Fission Logo" src="https://banners.beyondco.de/satori.png?theme=light&packageManager=composer+require&packageName=wottavm%2Fsatori&pattern=leaf&style=style_2&description=An+opinionated+Laravel%2C+Filament%2C+Blueprint%2C+and+React+starter+kit.&md=1&showWatermark=0&fontSize=100px&images=sun">
   </picture>
 </p>
 
