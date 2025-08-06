@@ -78,6 +78,7 @@
             "@test:phpstan",
             "@test:pint"
         ],
+        "parallel:fix:test": "@parallel pint refactor",
         "test:config-clear": "@php artisan config:clear --ansi",
         "test:artisan-test": "@php artisan test",
         "test:refactor": "./vendor/bin/rector process --dry-run",

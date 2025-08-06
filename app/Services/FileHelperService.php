@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Services;
 
 use Illuminate\Support\Collection;
 use Symfony\Component\Finder\Finder;
 
-class FileHelperService
+final class FileHelperService
 {
     /**
      * Get a list of possible model names.
