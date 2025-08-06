@@ -5,11 +5,11 @@
 > When Laravel Boost gets released I can only imagine how much more efficient I can be with it when combined in this starter template.
 
 > [!TIP]
-> To get up and running quickly, use the new Laravel installer with the using option: `laravel new my-project --using=wotta/satori`
+> To get up and running quickly, use the new Laravel installer with the using option: `laravel new my-project --using=wottavm/satori`
 
 ## Installation guide
 
-This project includes a custom installation script that streamlines the setup process. If you are not using the Laravel installer, you can still use this script to install Satori. Use the composer create command to do so: `composer create-project wotta/satori myapp`.
+This project includes a custom installation script that streamlines the setup process. If you are not using the Laravel installer, you can still use this script to install Satori. Use the composer create command to do so: `composer create-project wottavm/satori myapp`.
 
 - If you don't have a `.env` yet, copy the `.env.example` to `.env`.
 - Run `composer install`.
