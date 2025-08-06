@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "wottavm/satori",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "Simple Laravel react starterkit with Blueprint and filament to build applications and ship applications.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
