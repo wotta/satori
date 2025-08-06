@@ -1,7 +1,7 @@
 # Satori
 
 > [!IMPORTANT]
-> This is an opinionated starter kit created by me (Wouter van Marrum) using Laravel's react staterkit, blueprint, and filament. While PRs are welcome, this is made to fit my personal needs to be able to create MVP's fast without AI.
+> This starter kit is created by Wouter van Marrum using Laravel's react starterkit, blueprint, and filament. While PRs are welcome, this is made to fit my personal needs to be able to create MVP's fast without AI.
 > When Laravel Boost gets released I can only imagine how much more efficient I can be with it when combined in this starter template.
 
 > [!TIP]
@@ -20,3 +20,7 @@ This project includes a custom installation script that streamlines the setup pr
 ## License
 
 The Satori starter kit is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+### Thanks
+
+This starterkit is inspired by [Josh Cirre's](https://x.com/joshcirre?utm_source=https://github.com/wotta/satori) [fission](https://github.com/joshcirre/fission) a Laravel Folio, and Livewire Volt starterkit.
