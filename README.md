@@ -1,7 +1,7 @@
 # Satori
 
 > [!IMPORTANT]
-> This starter kit is created by Wouter van Marrum using Laravel's react starterkit, blueprint, and filament. While PRs are welcome, this is made to fit my personal needs to be able to create MVP's fast without AI.
+> This starter kit is created by Wouter van Marrum using Laravel's react starterkit, [Blueprint](https://blueprint.laravelshift.com), and [filament](https://filamentphp.com). While PRs are welcome, this is made to fit my personal needs to be able to create MVP's fast without AI.
 > When Laravel Boost gets released I can only imagine how much more efficient I can be with it when combined in this starter template.
 
 > [!TIP]
