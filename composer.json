@@ -18,7 +18,6 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "filament/upgrade": "^4.0",
         "larastan/larastan": "^3.0",
         "laravel-shift/blueprint": "^2.12",
         "laravel/boost": "^1.0",
