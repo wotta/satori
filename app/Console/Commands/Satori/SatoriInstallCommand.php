@@ -87,6 +87,8 @@ final class SatoriInstallCommand extends Command
             $this->line('');
         }
 
+        $this->call('boost:install');
+
         $this->info('To run the local development machine use one of the following commands:');
         $this->line('');
         $this->comment('1. composer run dev');

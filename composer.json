@@ -21,6 +21,7 @@
         "filament/upgrade": "^4.0",
         "larastan/larastan": "^3.0",
         "laravel-shift/blueprint": "^2.12",
+        "laravel/boost": "^1.0",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.18",
         "laravel/sail": "^1.44",
