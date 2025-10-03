@@ -22,6 +22,7 @@ final class SatoriInstallCommand extends Command
     /** @var string[] self::PACKAGES */
     private const array PACKAGES = [
         'prism-php/prism' => '^0.82',
+        'vizra/vizra-adk' => '^0.0',
         'openai-php/client' => '^0.8',
     ];
 
@@ -138,6 +139,13 @@ final class SatoriInstallCommand extends Command
                     $this->line(str_repeat('<fg=white;bg=gray> </>', 60));
                     $this->newLine(2);
                 }
+
+                return;
+            case 'vizra/vizra-adk':
+                $this->call('vizra:install');
+
+                $this->newLine(2);
+                $this->info('Create your first agent check out the documentation: https://github.com/vizra-ai/vizra-adk?tab=readme-ov-file#-quick-start');
 
                 return;
             case 'openai-php/client':
