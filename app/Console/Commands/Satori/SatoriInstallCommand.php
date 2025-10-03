@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use JsonException;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command as BaseCommand;
+use Throwable;
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\suggest;
@@ -22,6 +23,7 @@ final class SatoriInstallCommand extends Command
     /** @var string[] self::PACKAGES */
     private const array PACKAGES = [
         'prism-php/prism' => '^0.82',
+        'vizra/vizra-adk' => '^0.0',
         'openai-php/client' => '^0.8',
     ];
 
@@ -138,6 +140,25 @@ final class SatoriInstallCommand extends Command
                     $this->line(str_repeat('<fg=white;bg=gray> </>', 60));
                     $this->newLine(2);
                 }
+
+                return;
+            case 'vizra/vizra-adk':
+                try {
+                    $this->call('vizra:install');
+                } catch(Throwable) {
+                    $this->error('Could not finish vizra installation.');
+                    $this->newLine(2);
+                    $this->info('Check if vizra was installed correctly. If not run the following commands:');
+                    $this->line(str_repeat('<fg=white;bg=gray> </>', 60));
+                    $this->line('<fg=white;bg=gray>    $ composer require '.$packageToInstall.str_repeat(' ', 22).'</>');
+                    $this->line('<fg=white;bg=gray>    $ php artisan vizra:install'.str_repeat(' ', 29).'</>');
+                    $this->line(str_repeat('<fg=white;bg=gray> </>', 60));
+                    $this->newLine(2);
+                }
+
+
+                $this->newLine(2);
+                $this->info('Create your first agent check out the documentation: https://github.com/vizra-ai/vizra-adk?tab=readme-ov-file#-quick-start');
 
                 return;
             case 'openai-php/client':
