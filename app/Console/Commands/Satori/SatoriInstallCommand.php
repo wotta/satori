@@ -148,10 +148,10 @@ final class SatoriInstallCommand extends Command
                 } catch(Throwable) {
                     $this->error('Could not finish vizra installation.');
                     $this->newLine(2);
-                    $this->info('Check if prism was installed correctly. If not run the following commands:');
+                    $this->info('Check if vizra was installed correctly. If not run the following commands:');
                     $this->line(str_repeat('<fg=white;bg=gray> </>', 60));
                     $this->line('<fg=white;bg=gray>    $ composer require '.$packageToInstall.str_repeat(' ', 22).'</>');
-                    $this->line('<fg=white;bg=gray>    $ php artisan vizra:install'.str_repeat(' ', 22).'</>');
+                    $this->line('<fg=white;bg=gray>    $ php artisan vizra:install'.str_repeat(' ', 29).'</>');
                     $this->line(str_repeat('<fg=white;bg=gray> </>', 60));
                     $this->newLine(2);
                 }
